@@ -136,6 +136,8 @@ class YtDlpProvider:
         except DownloadError as exc:
             raise self._map_download_error(exc) from exc
         except Exception as exc:
+            import traceback
+            traceback.print_exc()
             raise ProviderUnavailable('The media provider is temporarily unavailable.') from exc
 
         if not isinstance(info, dict) or info.get('_type') in {'playlist', 'multi_video'} or info.get('entries'):
