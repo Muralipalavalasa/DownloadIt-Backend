@@ -6,7 +6,10 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_env: str = 'development'
-    frontend_url: str = 'http://localhost:5173'
+    frontend_url: str = Field(
+    default='http://localhost:5173',
+    validation_alias='FRONTEND_URL',
+)
     app_name: str = 'DownloadIt API'
     app_version: str = '1.0.0'
     database_url: str
